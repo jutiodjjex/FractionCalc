@@ -4,7 +4,7 @@ public class Option {
 
     
 	
-    //Метод для суммирования дробей
+//Метод для суммирования дробей
 	public static Fraction addition(Fraction fractionFirst, Fraction fractionSecond){
 		double[] symList = reducingNumenator(fractionFirst, fractionSecond);
 		double additionResult;
@@ -78,20 +78,3 @@ public class Option {
 	
 }
 
-
-	//Что-то лишнее, не помню, зачем оно надо было.
-	/*public static double reducingNumenator(Fraction fractionFirst, Fraction fractionSecond){
-		if(fractionFirst.numenator % fractionSecond.numenator == 0.0){
-			double saveSpotForFirstNumenator;
-			double saveSpotForSecondNumenator;
-			double symList[] = {fractionFirst.denominator, fractionFirst.numenator, fractionSecond.denominator, fractionSecond.numenator};
-			saveSpotForFirstNumenator = fractionFirst.numenator;
-			saveSpotForSecondNumenator = fractionSecond.numenator;
-			fractionFirst.numenator = fractionFirst.numenator * fractionSecond.numenator;
-			fractionSecond.numenator = fractionSecond.numenator * saveSpotForFirstNumenator;
-			fractionFirst.denominator = fractionFirst.denominator * saveSpotForSecondNumenator;
-			fractionSecond.denominator = fractionSecond.denominator * saveSpotForFirstNumenator;
-			}
-			
-		return fractionFirst.denominator + fractionFirst.numenator + fractionSecond.denominator + fractionSecond.numenator; 
-	*/
