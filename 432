@@ -1,0 +1,159 @@
+
+public class Option {
+
+    private static Fraction reducingDenominatorFirst(Fraction fractionFirst, Fraction fractionSecond){
+        Fraction equalDenominatorFirst = new Fraction(fractionFirst.getNumenator() * fractionSecond.getDenominator(), fractionFirst.getDenominator() * fractionSecond.getNumenator());
+        return equalDenominatorFirst;
+    }
+
+    private static Fraction reducingDenominatorSecond(Fraction fractionFirst, Fraction fractionSecond){
+        Fraction equalDenominatorSecond = new Fraction(fractionSecond.getNumenator() * fractionFirst.getDenominator(), fractionSecond.getDenominator() * fractionFirst.getNumenator());
+        return equalDenominatorSecond;
+    }
+
+
+    public static Fraction addition(Fraction fractionFirst, Fraction fractionSecond){
+        if(fractionFirst.getDenominator() == fractionSecond.getDenominator()){
+            System.out.println("Denominators are equal.");
+        } else {
+            System.out.println("Reducing to the global denominator...");
+        }
+        Fraction fractionResult = new Fraction(reducingDenominatorFirst(fractionFirst, fractionSecond).getNumenator() + reducingDenominatorSecond(fractionFirst, fractionSecond).getNumenator(), reducingDenominatorSecond(fractionFirst, fractionSecond).getDenominator());
+        return fractionResult;
+    }
+
+    public static Fraction subtraction(Fraction fractionFirst, Fraction fractionSecond){
+        if(fractionFirst.getDenominator() == fractionSecond.getDenominator()){
+            System.out.println("Denominators are equal.");
+        } else {
+            System.out.println("Reducing to the global denominator...");
+        }
+        Fraction fractionResult = new Fraction(reducingDenominatorFirst(fractionFirst, fractionSecond).getNumenator() - reducingDenominatorSecond(fractionFirst, fractionSecond).getNumenator(), reducingDenominatorSecond(fractionFirst, fractionSecond).getDenominator());
+        return fractionResult;
+    }
+
+    public static Fraction division(Fraction fractionFirst, Fraction fractionSecond){
+        Fraction.coup(fractionSecond); //Переворот второй дроби
+        Fraction fractionResult = new Fraction(fractionFirst.getNumenator() * fractionSecond.getNumenator(), fractionFirst.getDenominator() * fractionSecond.getDenominator());
+        return fractionResult;
+    }
+    
+    
+class Fraction {
+    private double numenator;
+    private double denominator;
+    Fraction(double numenator, double denominator){
+        this.numenator = numenator;
+        this.denominator = denominator;
+    }
+    double getDenominator(){
+        return denominator;
+    }
+    double getNumenator(){
+        return numenator;
+    }
+
+    }
+
+    }
+}
+
+import java.util.Scanner;
+
+        public class Main {
+            static Scanner scanner = new Scanner(System.in);
+            public static void main(String args[]){
+
+                double firstDenominator = 0, firstNuminator = 0, secondDenominator = 0, secondNuminator = 0; //Иниөиализаөия переменных для дробей
+                char optionForMethod; //Переменная для знака операции
+
+		/* Тут у нас участвует метод для введения значений в переменные, в классе Checker находится обьект, который берёт в свои поля значения
+		*  из полей объекта Fraction, далее пихает их в метод проверки. Метод проверки работает таким образом: переменные знаменателей и числителей
+		*  обеих дробей изначально равны нулю. Он проверяет каждую переменную, начиная с первой, то есть числитель первой дроби. Если числитель первой
+		*  дроби равен нулю, то в него заносится следующее значение с клавиатуры типа char. Если же значение переменной не равно нулю, то заносится во вторую
+		*  переменную. Если и вторая не равна нулю, то в третью и так далее. Под каждым возможным результатом работы оператора if так же строке
+		*  denominatorOrNumenatorForFraction присваивается значение типа String. От этого значения и зависит результат работы следующего цикла,
+		*  а точнее - оператора switch.
+		*/
+                for(int i = 1; i < 5; i++){
+
+                    switch(i){
+                        case 1:
+                            firstDenominator = scanner.nextDouble();
+                            break;
+                        case 2:
+                            firstNuminator = scanner.nextDouble();
+                            break;
+                        case 3:
+                            secondDenominator = scanner.nextDouble();
+                            break;
+                        case 4:
+                            secondNuminator = scanner.nextDouble();
+                            break;
+
+
+                    }
+                }
+
+
+                Fraction fractionFirst = new Fraction(firstDenominator, firstNuminator); //Ввод значений переменных в поля объекта типа Fraction. Первая дробь.
+                Fraction fractionSecond = new Fraction(secondDenominator, secondNuminator);  //Ввод значений переменных в поля объекта типа Fraction. Вторая дробь.
+	/*Метод для вывода дробей на экран. Выводит первую и вторую дробь, используя
+	* методы из класса Fraction для каждой дроби: первой и второй.
+	*/
+                fractionVisible(fractionFirst, fractionSecond);
+                System.out.println("What would you do with this fractions?");
+                System.out.println("You can do '+' '-' '/' '*' with fractions. Choose one: ");
+                optionForMethod = scanner.next().charAt(0); //Ввод данных типа Char для операций с дробями, чем и занимается оператор switch
+                switch(optionForMethod){
+                    case '+':
+                        Fraction.outPrint()
+                        break;
+                    case '-':
+                        Option.subtraction(fractionFirst, fractionSecond);
+                        break;
+                    case '/':
+                        Option.division(fractionFirst, fractionSecond);
+                        break;
+                    case '*':
+                        Option.multiplication(fractionFirst, fractionSecond);
+                        break;
+
+
+                }
+                System.out.println("Result is: " + Fraction.outPrint());
+
+            }
+
+            public static void fractionVisible(Fraction fractionFirst, Fraction fractionSecond){
+                System.out.println("First fraction is: ");
+                System.out.println(Fraction.outPrint(fractionFirst));
+                System.out.println("Second fraction is: ");
+                System.out.println(Fraction.outPrint(fractionSecond));
+            }
+
+
+        }
+
+
+    }
+
+
+    public static Fraction multiplication(Fraction fractionFirst, Fraction fractionSecond) {
+        Fraction fractionResult = new Fraction(fractionFirst.getNumenator() * fractionSecond.getNumenator(), fractionFirst.getDenominator() * fractionSecond.getDenominator());
+        return fractionResult;
+    }
+
+    public static Fraction coup(Fraction fraction) {
+        double saveNumenator = fraction.getNumenator();
+        double saveDenominator = fraction.getDenominator();
+        fraction.getDenominator(saveDenominator);
+        fraction.getDenominator() = saveNumenator;
+        return fraction;
+    }
+
+
+    public void outPrint(Fraction fraction) {
+        System.out.println(fraction.numenator + "/" + fraction.denominator);
+}
+
